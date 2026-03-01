@@ -29,28 +29,31 @@ public:
 	template<typename IStream>
 	static void Skip4( IStream& rStream )
 	{
-		uint32_t x = 0u;
-		rStream.read( reinterpret_cast< char* >( &x ), sizeof( uint32_t ) );
+		rStream.ignore( 4 );
 	}
 
 	template<typename IStream>
 	static void Skip8( IStream& rStream )
 	{
-		uint64_t x = 0u;
-		rStream.read( reinterpret_cast< char* >( &x ), sizeof( uint64_t ) );
+		rStream.ignore( 8 );
 	}
 
 	template<typename IStream>
 	static void Skip2( IStream& rStream )
 	{
-		uint16_t x = 0;
-		rStream.read( reinterpret_cast< char* >( &x ), sizeof( uint16_t ) );
+		rStream.ignore( 2 );
 	}
 
 	template<typename IStream>
 	static void SkipByte( IStream& rStream )
 	{
-		uint8_t x = 0;
-		rStream.read( reinterpret_cast< char* >( &x ), sizeof( uint8_t ) );
+		rStream.ignore();
 	}
+
+	template<typename IStream, typename NType>
+	static void SkipN( IStream& rStream, NType n )
+	{
+		rStream.seekg( n, std::ios::cur );
+	}
+
 };

@@ -9,7 +9,7 @@
 struct FStoredCar
 {
 	uint32_t ModelID = 0;
-	FVec3 Positon{};
+	FVec3 Position{};
 	FVec3 Rotation{};
 
 	uint32_t Immunities = 0b0;
@@ -105,10 +105,10 @@ struct FGarage
 {
 	GarageType TypeID = GarageType::None;
 	GarageState State = GarageState::FullyClosed;
-	uint8_t __unknown_0__ = 0;
-	uint8_t ClosingWithoutTargetCar = 0;
-	uint8_t Deactivated = 0;
-	uint8_t ResprayHappenend = 0;
+	bool __unknown_0__ = false;
+	bool ClosingWithoutTargetCar = false;
+	bool Deactivated = false;
+	bool ResprayHappenend = false;
 
 	uint32_t TargetVehicleModelIdx = 0u;
 	uint32_t Door1Ptr = 0u;
@@ -152,16 +152,16 @@ struct FGarage
 struct FGarages
 {
 	uint32_t Count = 0;
-	uint32_t FreeBombs = 0;
-	uint32_t FreeResprays = 0;
-	uint32_t CarsCollected = 0;
-	uint32_t BankVansCollected = 0;
-	uint32_t PoliceCarsCollected = 0;
+	bool BombsAreFree = false;
+	bool RespraysAreFree = false;
+	int32_t CarsCollected = 0;
+	int32_t BankVansCollected = 0;
+	int32_t PoliceCarsCollected = 0;
 
 	// What does IE mean??
-	uint32_t PortlandIEStatus = 0;
-	uint32_t ShoresideIEStatus = 0;
-	uint32_t UnusedIEStatus = 0;
+	int32_t PortlandIEStatus = 0;
+	int32_t ShoresideIEStatus = 0;
+	int32_t UnusedIEStatus = 0;
 
 	// GA_21 = Garage is full...
 	uint32_t TimeGA21WasShown = 0;

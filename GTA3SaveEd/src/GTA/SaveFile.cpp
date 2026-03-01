@@ -23,8 +23,9 @@ bool FGtaSaveFile::Read( const std::filesystem::path& rPath )
 	m_SaveFile.TheScriptsData.Read( stream );
 	m_SaveFile.PlayerPedsData.Read( stream );
 	m_SaveFile.Garages.Read( stream );
-//	m_SaveFile.Vehicles.Read( stream );
-//	m_SaveFile.Objects.Read( stream );
+	m_SaveFile.Vehicles.Read( stream );
+	m_SaveFile.Objects.Read( stream );
+	m_SaveFile.PathFinding.Read( stream );
 
 	stream.close();
 

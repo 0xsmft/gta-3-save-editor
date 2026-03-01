@@ -4,9 +4,28 @@
 #include <array>
 #include <fstream>
 
+enum class WeaponType : uint32_t
+{
+	Unarmed,
+	BaseballBat,
+	Pistol,
+	Uzi,
+	Shotgun,
+
+	// AK 47
+	Chaingun,
+	M16,
+	Sniper,
+	Rocket,
+	Flamethrower,
+	Molotov,
+	Grenade,
+	Detonator
+};
+
 struct FWeaponSlot
 {
-	uint32_t WeaponID = 0;
+	WeaponType WeaponID = WeaponType::Unarmed;
 	uint32_t ___unknown_0__ = 0;
 	uint32_t BulletsInMag = 0;
 	uint32_t BulletsInTotal = 0;

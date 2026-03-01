@@ -5,8 +5,7 @@
 
 bool FVehicles::Read( std::ifstream& rStream )
 {
-	FBufferHelpers::Skip4( rStream );
-	FBufferHelpers::Skip4( rStream );
+	FBufferHelpers::Skip8( rStream );
 
 	FBufferHelpers::ReadObject( Count, rStream );
 	FBufferHelpers::ReadObject( NumberOfBoats, rStream );
@@ -14,26 +13,48 @@ bool FVehicles::Read( std::ifstream& rStream )
 	Vehicles.resize( Count );
 	Boats.resize( NumberOfBoats );
 
-	for( auto& rVechicle : Vehicles )
+	for( uint32_t Index = 0; Index < Count + NumberOfBoats; ++Index )
 	{
-		FBufferHelpers::ReadObject( rVechicle.Field0h, rStream );
-		FBufferHelpers::ReadObject( rVechicle.ModelID, rStream );
-		FBufferHelpers::ReadObject( rVechicle.Field06h, rStream );
+		uint32_t type = 0u;
+		int16_t model = 0;
+		int32_t slot = 0;
 
-		FBufferHelpers::ReadObject( rVechicle.CVehicle.__unknown_0__, rStream );
-		FBufferHelpers::ReadObject( rVechicle.CVehicle.Position, rStream );
-		FBufferHelpers::ReadObject( rVechicle.CVehicle.__unknown_1__, rStream );
-	}
+		FBufferHelpers::ReadObject( type, rStream );
+		FBufferHelpers::ReadObject( model, rStream );
+		FBufferHelpers::ReadObject( slot, rStream );
 
-	for( auto& rBoat : Boats )
-	{
-		FBufferHelpers::ReadObject( rBoat.Field0h, rStream );
-		FBufferHelpers::ReadObject( rBoat.ModelID, rStream );
-		FBufferHelpers::ReadObject( rBoat.Field06h, rStream );
+		switch( type )
+		{
+			case 1 /*VehicleType::Boat*/:
+			{
+				FBoat& rBoat = Boats[ Index ];
 
-		FBufferHelpers::ReadObject( rBoat.CBoat.__unknown_0__, rStream );
-		FBufferHelpers::ReadObject( rBoat.CBoat.Position, rStream );
-		FBufferHelpers::ReadObject( rBoat.CBoat.__unknown_1__, rStream );
+				FBufferHelpers::ReadObject( rBoat.CBoat.__unknown_0__, rStream );
+				FBufferHelpers::ReadObject( rBoat.CBoat.Position, rStream );
+				FBufferHelpers::ReadObject( rBoat.CBoat.__unknown_1__, rStream );
+
+				rBoat.Type = ( VehicleType ) type;
+				rBoat.ModelID = model;
+				rBoat.Slot = slot;
+			} break;
+
+			case 0 /*VehicleType::Car*/:
+			{
+				FVehicle& rVehicle = Vehicles[ Index ];
+
+				FBufferHelpers::ReadObject( rVehicle.CVehicle.__unknown_0__, rStream );
+				FBufferHelpers::ReadObject( rVehicle.CVehicle.Position, rStream );
+				FBufferHelpers::ReadObject( rVehicle.CVehicle.__unknown_1__, rStream );
+
+				rVehicle.Type = ( VehicleType ) type;
+				rVehicle.ModelID = model;
+				rVehicle.Slot = slot;
+			} break;
+
+			default:
+				__debugbreak();
+				break;
+		}
 	}
 
 	return true;

@@ -5,8 +5,9 @@
 
 bool FObjects::Read( std::ifstream& rStream )
 {
-	FBufferHelpers::Skip4( rStream );
-	FBufferHelpers::Skip4( rStream );
+	uint32_t temp4 = 0u;
+	FBufferHelpers::ReadObject( temp4, rStream );
+	FBufferHelpers::ReadObject( temp4, rStream );
 
 	FBufferHelpers::ReadObject( Count, rStream );
 

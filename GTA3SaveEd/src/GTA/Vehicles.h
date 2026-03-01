@@ -14,11 +14,21 @@ struct FCVehicle
 	uint8_t __unknown_1__[ 1384 ]{};
 };
 
+enum class VehicleType : uint32_t
+{
+	Car,
+	Boat,
+	Train,
+	Helicopter,
+	Dodo,
+	Bike
+};
+
 struct FVehicle
 {
-	uint32_t Field0h = 0;
-	uint16_t ModelID = 0;
-	uint32_t Field06h = 0;
+	VehicleType Type = VehicleType::Car;
+	int16_t ModelID = 0;
+	int32_t Slot = 0;
 
 	FCVehicle CVehicle{};
 };
@@ -34,9 +44,9 @@ struct FCBoat
 
 struct FBoat
 {
-	uint32_t Field0h = 0;
-	uint16_t ModelID = 0;
-	uint32_t Field06h = 0;
+	VehicleType Type = VehicleType::Boat;
+	int16_t ModelID = 0;
+	int32_t Slot = 0;
 
 	FCBoat CBoat;
 };

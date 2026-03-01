@@ -8,6 +8,7 @@
 #include "Garages.h"
 #include "Vehicles.h"
 #include "Objects.h"
+#include "PathFinding.h"
 
 #include <filesystem>
 
@@ -28,6 +29,9 @@ struct FSaveFileStructure
 	
 	// Block 4
 	FObjects Objects;
+
+	// Block 5
+	FPathFinding PathFinding;
 };
 
 class FGtaSaveFile

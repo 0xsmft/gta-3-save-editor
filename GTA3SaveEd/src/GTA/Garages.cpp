@@ -6,7 +6,7 @@
 bool FStoredCar::Read( std::ifstream& rStream )
 {
 	FBufferHelpers::ReadObject( ModelID, rStream );
-	FBufferHelpers::ReadObject( Positon, rStream );
+	FBufferHelpers::ReadObject( Position, rStream );
 	FBufferHelpers::ReadObject( Rotation, rStream );
 	FBufferHelpers::ReadObject( Immunities, rStream );
 	FBufferHelpers::ReadObject( PrimaryColorID, rStream );
@@ -23,12 +23,19 @@ bool FStoredCar::Read( std::ifstream& rStream )
 
 bool FGarages::Read( std::ifstream& rStream )
 {
-	FBufferHelpers::Skip4( rStream );
-	FBufferHelpers::Skip4( rStream );
+	FBufferHelpers::Skip8( rStream );
 
 	FBufferHelpers::ReadObject( Count, rStream );
-	FBufferHelpers::ReadObject( FreeBombs, rStream );
-	FBufferHelpers::ReadObject( FreeResprays, rStream );
+	FBufferHelpers::ReadObject( BombsAreFree, rStream );
+
+	FBufferHelpers::SkipByte( rStream );
+	FBufferHelpers::Skip2( rStream );
+
+	FBufferHelpers::ReadObject( RespraysAreFree, rStream );
+
+	FBufferHelpers::SkipByte( rStream );
+	FBufferHelpers::Skip2( rStream );
+
 	FBufferHelpers::ReadObject( CarsCollected, rStream );
 	FBufferHelpers::ReadObject( BankVansCollected, rStream );
 	FBufferHelpers::ReadObject( PoliceCarsCollected, rStream );
