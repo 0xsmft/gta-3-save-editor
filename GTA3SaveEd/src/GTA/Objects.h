@@ -5,28 +5,48 @@
 #include <vector>
 #include <fstream>
 
+struct FCCompressedMatrix
+{
+	FVec3 Position;
+	uint8_t RightX = 0;
+	uint8_t RightY = 0;
+	uint8_t RightZ = 0;
+	uint8_t UpX = 0;
+	uint8_t UpY = 0;
+	uint8_t UpZ = 0;
+
+	uint8_t __a_UpZ = 0;
+	uint8_t __b_UpZ = 0;
+};
+
 struct FCObject
 {
-	uint16_t ModelID = 0;
-	uint32_t ObjectReference = 0;
-	FVec3 Position{};
+	int16_t ModelID = 0;
+	int32_t ObjectReference = 0;
 
-	FVec3 __unknown_0__;
+	FCCompressedMatrix Matrix{};
 
-	uint8_t __unknown_1__[ 12 ]{};
-	uint8_t __unknown_2__ = 0;
-	uint8_t __unknown_3__ = 0;
-	uint8_t __unknown_4__ = 0;
-	uint8_t __unknown_5__ = 0;
-	uint8_t __unknown_6__ = 0;
-	uint8_t __unknown_7__ = 0;
-	uint8_t __unknown_8__ = 0;
-	uint8_t __unknown_9__ = 0;
-	uint8_t __unknown_10__ = 0;
-	uint8_t __unknown_11__ = 0;
-	uint32_t __unknown_12__ = 0u;
-	uint32_t __unknown_13__ = 0u;
-	uint32_t __unknown_14__ = 0u;
+	uint32_t __unknown_0__ = 0u;
+	float UproofLimit = 0.0f;
+
+	FCCompressedMatrix ObjectMatrix{};
+
+	uint32_t __unknown_1__ = 0u;
+
+	uint8_t ObjectCreatedBy = 0;
+	bool IsPickup = false;
+	bool IsPickupInShop = false;
+	bool IsPickupOutofStock = false;
+	bool IsGlassCracked = false;
+	bool IsGlassBroken = false;
+	bool HasBeenDamaged = false;
+	
+	float CollisionDmgMultiplier = 0.0f;
+	uint8_t CollisionDamageEffect = 0;
+	uint8_t SpecialCollisionResponseCase = 0;
+	uint32_t EndOfLifeTime = 0u;
+	uint32_t FlagsA = 0u;
+	uint32_t FlagsB = 0u;
 };
 
 struct FObjects

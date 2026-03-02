@@ -9,6 +9,17 @@
 #include "Vehicles.h"
 #include "Objects.h"
 #include "PathFinding.h"
+#include "Cranes.h"
+#include "Pickups.h"
+#include "PhoneInfo.h"
+#include "RestartPoints.h"
+#include "RadarBlips.h"
+#include "ZoneInfo.h"
+#include "Gangs.h"
+#include "CarGenerators.h"
+#include "Particles.h"
+#include "AudioScriptObjects.h"
+#include "PlayerInfo.h"
 
 #include <filesystem>
 
@@ -32,13 +43,46 @@ struct FSaveFileStructure
 
 	// Block 5
 	FPathFinding PathFinding;
+
+	// Block 6
+	FCranes Cranes;
+
+	// Block 7
+	FPickups Pickups;
+
+	// Block 8
+	FPhones Phones;
+	
+	// Block 9
+	FRestartInfo Restarts;
+
+	// Block 10
+	FRadarBlips RadarBlips;
+
+	// Block 11
+	FTheZones TheZones;
+	
+	// Block 12
+	FGangs Gangs;
+
+	// Block 13
+	FTheCarGenerators CarGenerators;
+
+	// Block 14
+	FParticles Particles;
+
+	// Block 15
+	FAudioScriptObjects AudioScriptObjects;
+
+	// Block 16
+	FPlayerInfo PlayerInfo;
 };
 
-class FGtaSaveFile
+class FSaveFile
 {
 public:
-	FGtaSaveFile();
-	~FGtaSaveFile();
+	FSaveFile();
+	~FSaveFile();
 
 public:	 
 	bool Read( const std::filesystem::path& rPath );

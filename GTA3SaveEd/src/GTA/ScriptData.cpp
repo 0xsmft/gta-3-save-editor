@@ -15,9 +15,9 @@ bool FTheScriptsData::Read( std::ifstream& rStream )
 
 	FBufferHelpers::ReadObject( VariableSpaceSize, rStream );
 
-	ScriptSpace.resize( VariableSpaceSize );
+	ScriptSpace.resize( VariableSpaceSize / 4 );
 
-	for( uint32_t Index = 0; Index < VariableSpaceSize; ++Index )
+	for( uint32_t Index = 0; Index < VariableSpaceSize / 4; ++Index )
 	{
 		FBufferHelpers::ReadObject( ScriptSpace[ Index ], rStream );
 	}
@@ -30,8 +30,6 @@ bool FTheScriptsData::Read( std::ifstream& rStream )
 	{
 		__debugbreak();
 	}
-
-	FBufferHelpers::Skip4( rStream );
 
 	FBufferHelpers::ReadObject( MainScriptData.OnMission, rStream );
 
@@ -85,7 +83,10 @@ bool FTheScriptsData::Read( std::ifstream& rStream )
 
 	FBufferHelpers::Skip2( rStream );
 
-	RunningScripts.resize( MainScriptData.NumberOfExclusiveMissionScr );
+	uint32_t numberOfRunningScripts = 0u;
+	FBufferHelpers::ReadObject( numberOfRunningScripts, rStream );
+
+	RunningScripts.resize( numberOfRunningScripts );
 
 	for( auto& rRunningScript : RunningScripts )
 	{

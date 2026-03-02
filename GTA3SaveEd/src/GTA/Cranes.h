@@ -70,4 +70,6 @@ struct FCranes
 	int32_t CarsCollectedByMilitaryCare = 0;
 
 	std::array<FCrane, 8> Cranes;
+
+	bool Read( std::ifstream& rStream );
 };

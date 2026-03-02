@@ -51,9 +51,9 @@ bool FGarages::Read( std::ifstream& rStream )
 		StoredCars[ Index ].Read( rStream );
 	}
 
-	Garages.resize( Count );
+	Garages.resize( 32 );
 
-	for( uint32_t Index = 0; Index < Count; Index++ )
+	for( uint32_t Index = 0; Index < 32; Index++ )
 	{
 		FBufferHelpers::ReadObject( Garages[ Index ].TypeID, rStream );
 		FBufferHelpers::ReadObject( Garages[ Index ].State, rStream );
@@ -105,6 +105,8 @@ bool FGarages::Read( std::ifstream& rStream )
 
 		Garages[ Index ].StoredCar.Read( rStream );
 	}
+
+	FBufferHelpers::SkipN( rStream, 244 );
 
 	return true;
 }

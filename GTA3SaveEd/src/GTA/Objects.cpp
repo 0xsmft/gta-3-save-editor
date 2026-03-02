@@ -17,22 +17,29 @@ bool FObjects::Read( std::ifstream& rStream )
 	{
 		FBufferHelpers::ReadObject( rObject.ModelID, rStream );
 		FBufferHelpers::ReadObject( rObject.ObjectReference, rStream );
-		FBufferHelpers::ReadObject( rObject.Position, rStream );
+		
+		FBufferHelpers::ReadObject( rObject.Matrix, rStream );
 		FBufferHelpers::ReadObject( rObject.__unknown_0__, rStream );
+		FBufferHelpers::ReadObject( rObject.UproofLimit, rStream );
+		FBufferHelpers::ReadObject( rObject.ObjectMatrix, rStream );
 		FBufferHelpers::ReadObject( rObject.__unknown_1__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_2__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_3__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_4__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_5__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_6__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_7__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_8__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_9__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_10__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_11__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_12__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_13__, rStream );
-		FBufferHelpers::ReadObject( rObject.__unknown_14__, rStream );
+		FBufferHelpers::ReadObject( rObject.ObjectCreatedBy, rStream );
+		FBufferHelpers::ReadObject( rObject.IsPickup, rStream );
+		FBufferHelpers::ReadObject( rObject.IsPickupInShop, rStream );
+		FBufferHelpers::ReadObject( rObject.IsGlassCracked, rStream );
+
+		FBufferHelpers::ReadObject( rObject.IsGlassBroken, rStream );
+		FBufferHelpers::ReadObject( rObject.HasBeenDamaged, rStream );
+
+		FBufferHelpers::Skip2( rStream );
+
+		FBufferHelpers::ReadObject( rObject.CollisionDmgMultiplier, rStream );
+		FBufferHelpers::ReadObject( rObject.CollisionDamageEffect, rStream );
+		FBufferHelpers::ReadObject( rObject.SpecialCollisionResponseCase, rStream );
+		
+		FBufferHelpers::ReadObject( rObject.EndOfLifeTime, rStream );
+		FBufferHelpers::ReadObject( rObject.FlagsA, rStream );
+		FBufferHelpers::ReadObject( rObject.FlagsB, rStream );
 	}
 
 	return true;

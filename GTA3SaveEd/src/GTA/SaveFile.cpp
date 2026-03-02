@@ -5,15 +5,15 @@
 
 #include <fstream>
 
-FGtaSaveFile::FGtaSaveFile()
+FSaveFile::FSaveFile()
 {
 }
 
-FGtaSaveFile::~FGtaSaveFile()
+FSaveFile::~FSaveFile()
 {
 }
 
-bool FGtaSaveFile::Read( const std::filesystem::path& rPath )
+bool FSaveFile::Read( const std::filesystem::path& rPath )
 {
 	std::ifstream stream( rPath, std::ios::binary | std::ios::in );
 	
@@ -26,6 +26,17 @@ bool FGtaSaveFile::Read( const std::filesystem::path& rPath )
 	m_SaveFile.Vehicles.Read( stream );
 	m_SaveFile.Objects.Read( stream );
 	m_SaveFile.PathFinding.Read( stream );
+	m_SaveFile.Cranes.Read( stream );
+	m_SaveFile.Pickups.Read( stream );
+	m_SaveFile.Phones.Read( stream );
+	m_SaveFile.Restarts.Read( stream );
+	m_SaveFile.RadarBlips.Read( stream );
+	m_SaveFile.TheZones.Read( stream );
+	m_SaveFile.Gangs.Read( stream );
+	m_SaveFile.CarGenerators.Read( stream );
+	m_SaveFile.Particles.Read( stream );
+	m_SaveFile.AudioScriptObjects.Read( stream );
+	m_SaveFile.PlayerInfo.Read( stream );
 
 	stream.close();
 

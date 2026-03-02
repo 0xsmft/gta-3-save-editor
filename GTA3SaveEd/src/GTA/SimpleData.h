@@ -4,6 +4,15 @@
 
 #include "Base/Common.h"
 
+enum WeatherType
+{
+	Random = -1,
+	Sunny = 0,
+	Cloudy = 1,
+	Rainy = 2,
+	Foggy = 3,
+};
+
 struct FSimpleData
 {
 	wchar_t SaveName[ 24 ];
@@ -44,11 +53,11 @@ struct FSimpleData
 	float FramesPerUpdateConst = 1.0f;
 	float TimeScaleConst = 1.0f;
 
-	uint16_t OldWeatherType = 0;
+	int16_t OldWeatherType = 0;
 	uint8_t Padding3[ 2 ];
-	uint16_t NewWeatherType = 0;
+	int16_t NewWeatherType = 0;
 	uint8_t Padding4[ 2 ];
-	uint16_t ForcedWeatherType = 0;
+	int16_t ForcedWeatherType = 0;
 	uint8_t Padding5[ 2 ];
 
 	float WeatherInterpolationValue = 0.0f;

@@ -91,7 +91,7 @@ struct FTheScriptsData
 	uint32_t SizeOfBlock1 = 0;
 
 	uint32_t VariableSpaceSize = 0;
-	std::vector<uint8_t> ScriptSpace;
+	std::vector<uint32_t> ScriptSpace;
 
 	FScriptData MainScriptData;
 

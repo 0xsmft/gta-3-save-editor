@@ -5,12 +5,13 @@
 
 bool FPathFinding::Read( std::ifstream& rStream )
 {
-	FBufferHelpers::Skip8( rStream );
+	FBufferHelpers::Skip4( rStream );
 
 	FBufferHelpers::ReadObject( NumberOfPaths, rStream );
+	NumberOfPaths /= 2;
 
-	DisabledPedPathNodes.resize( NumberOfPaths / 2 );
-	DisabledCarPathNodes.resize( NumberOfPaths / 2 );
+	DisabledPedPathNodes.resize( NumberOfPaths );
+	DisabledCarPathNodes.resize( NumberOfPaths );
 
 	for( uint32_t Index = 0u; Index < DisabledPedPathNodes.size(); ++Index )
 	{
