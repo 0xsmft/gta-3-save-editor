@@ -1,0 +1,3 @@
+[submodule "GTA3SaveEd/vendor/ImGui"]
+	path = GTA3SaveEd/vendor/ImGui
+	url = https://github.com/0xsmft/fork-imgui
