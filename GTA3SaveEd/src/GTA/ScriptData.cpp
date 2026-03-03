@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "ScriptData.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 constexpr uint32_t SCRIPT_DATA_SIZE = 0x3C8;
 

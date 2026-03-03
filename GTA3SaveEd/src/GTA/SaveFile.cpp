@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "SaveFile.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 #include <fstream>
 
@@ -37,6 +37,9 @@ bool FSaveFile::Read( const std::filesystem::path& rPath )
 	m_SaveFile.Particles.Read( stream );
 	m_SaveFile.AudioScriptObjects.Read( stream );
 	m_SaveFile.PlayerInfo.Read( stream );
+	m_SaveFile.PlayerStats.Read( stream );
+	m_SaveFile.StreamingData.Read( stream );
+	m_SaveFile.PedTypeInfos.Read( stream );
 
 	stream.close();
 

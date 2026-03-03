@@ -12,9 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["ImGui"] = "GTA3SaveEd/vendor/imgui"
+IncludeDir["vma"] = "GTA3SaveEd/vendor/vma/src"
 
---group "Dependencies"
---	include "GTA3SaveEd/vendor/imgui"
+group "Dependencies"
+	include "GTA3SaveEd/vendor/imgui"
 
 group "App"
 project "GTA3SaveEd"
@@ -34,17 +35,28 @@ project "GTA3SaveEd"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/vulkan/**.h",
+		"%{prj.name}/vendor/vma/src/**.cpp",
+		"%{prj.name}/vendor/vma/src/**.h",
 	}
-
+	
 	includedirs
 	{
 		"%{prj.name}/src",
+		"%{prj.name}/vendor/vulkan/include",
+		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.vma}",
+	}
+
+	defines
+	{
+		"XY_RBY_INCLUDE_VULKAN",
 	}
 
 	links 
 	{
---		"ImGui"
+		"ImGui"
 	}
 
 	filter "system:linux"
@@ -52,10 +64,12 @@ project "GTA3SaveEd"
 
 		links 
 		{
+			"vulkan"
 		}
 
 		defines
 		{
+			"XY_PLAFORM_LINUX"
 		}
 
 
@@ -64,6 +78,7 @@ project "GTA3SaveEd"
 
 		links 
 		{
+			"GTA3SaveEd/vendor/vulkan/bin/vulkan-1"
 		}
 
 		defines

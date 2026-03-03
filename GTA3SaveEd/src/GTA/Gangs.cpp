@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "Gangs.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FGangs::Read( std::ifstream& rStream )
 {

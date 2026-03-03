@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "RadarBlips.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FRadarBlips::Read( std::ifstream& rStream )
 {

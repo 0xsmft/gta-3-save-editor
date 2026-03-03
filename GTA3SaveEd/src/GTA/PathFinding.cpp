@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "PathFinding.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FPathFinding::Read( std::ifstream& rStream )
 {

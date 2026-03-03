@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "Particles.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FParticles::Read( std::ifstream& rStream )
 {

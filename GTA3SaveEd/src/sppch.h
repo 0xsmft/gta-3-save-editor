@@ -9,3 +9,10 @@
 #include <algorithm>
 
 #include <fstream>
+
+#include "Core/Platform.h"
+#include "Core/Base.h"
+#include "Core/Ref.h"
+#include "Core/Log.h"
+#include "Core/Asserts.h"
+#include "Core/Verifies.h"

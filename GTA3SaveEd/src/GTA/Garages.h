@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Base/Common.h"
+#include "Core/Common.h"
 
 #include <array>
 #include <vector>

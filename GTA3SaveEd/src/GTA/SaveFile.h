@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Base/Common.h"
+#include "Core/Common.h"
 
 #include "SimpleData.h"
 #include "ScriptData.h"
@@ -20,6 +20,9 @@
 #include "Particles.h"
 #include "AudioScriptObjects.h"
 #include "PlayerInfo.h"
+#include "Stats.h"
+#include "StreamingData.h"
+#include "PedTypeInfo.h"
 
 #include <filesystem>
 
@@ -76,6 +79,15 @@ struct FSaveFileStructure
 
 	// Block 16
 	FPlayerInfo PlayerInfo;
+
+	// Block 17
+	FStatsData PlayerStats;
+
+	// Block 18
+	FStreamingData StreamingData;
+
+	// Block 19
+	FPedTypeInfos PedTypeInfos;
 };
 
 class FSaveFile

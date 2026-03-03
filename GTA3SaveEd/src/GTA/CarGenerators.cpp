@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "CarGenerators.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FTheCarGenerators::Read( std::ifstream& rStream )
 {

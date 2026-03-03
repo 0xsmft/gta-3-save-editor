@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "Pickups.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FPickups::Read( std::ifstream& rStream )
 {

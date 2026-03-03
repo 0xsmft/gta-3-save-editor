@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "Objects.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FObjects::Read( std::ifstream& rStream )
 {

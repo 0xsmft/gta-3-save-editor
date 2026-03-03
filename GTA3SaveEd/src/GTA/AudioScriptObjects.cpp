@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "AudioScriptObjects.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FAudioScriptObjects::Read( std::ifstream& rStream )
 {

@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "Vehicles.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FVehicles::Read( std::ifstream& rStream )
 {

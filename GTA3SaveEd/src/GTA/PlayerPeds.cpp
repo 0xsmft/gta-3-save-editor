@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "PlayerPeds.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FPlayerPeds::Read( std::ifstream& rStream )
 {

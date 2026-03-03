@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "PlayerInfo.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FPlayerInfo::Read( std::ifstream& rStream )
 {

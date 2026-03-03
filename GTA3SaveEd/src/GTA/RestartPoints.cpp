@@ -1,7 +1,7 @@
 #include "sppch.h"
 #include "RestartPoints.h"
 
-#include "Base/BufferHelpers.h"
+#include "Core/BufferHelpers.h"
 
 bool FRestartInfo::Read( std::ifstream& rStream )
 {
