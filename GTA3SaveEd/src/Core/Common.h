@@ -14,6 +14,16 @@ struct FVec3
 	float X = 0.0F, Y = 0.0F, Z = 0.0F;
 };
 
+inline float* ValuePtrFVec3( FVec3& rVec ) 
+{
+	return &( rVec.X );
+}
+
+inline float* ValuePtrFVec2( FVec2& rVec )
+{
+	return &( rVec.X );
+}
+
 struct FCMartix 
 {
 	FVec3 Right{};

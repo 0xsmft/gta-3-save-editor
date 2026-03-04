@@ -20,6 +20,8 @@ XY_DECODE_VERSION( sourceVersion, major, minor, patch ); \
 string = std::format( "{0}.{1}.{2}", major, minor, patch ); \
 }
 
+#define XY_NODISCARD [[nodiscard]]
+
 namespace Core {
 
 	inline void BreakDebug()

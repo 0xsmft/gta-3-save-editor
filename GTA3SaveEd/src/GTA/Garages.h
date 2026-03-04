@@ -21,8 +21,24 @@ struct FStoredCar
 	uint8_t ModelVariationB = 0;
 	uint8_t BombTypeID = 0;
 
+	XY_NODISCARD inline bool IsVehicleImmunityFlagSet( uint32_t flag ) const
+	{
+		return ( Immunities & flag ) != 0;
+	}
+
+	inline void SetImmunityFlag( uint32_t flag, bool val ) 
+	{
+		if( val )
+			Immunities |= flag;
+		else 
+			Immunities &= ~flag;
+	}
+
 	bool Read( std::ifstream& rStream );
 };
+
+std::string_view VehicleModelIDToString( uint32_t ModelID );
+std::string_view VehicleColorIDToString( uint8_t ColorID );
 
 enum
 {

@@ -96,6 +96,12 @@ public:
 	FSaveFile();
 	~FSaveFile();
 
+	XY_NODISCARD FSaveFileStructure& GetSaveFileStructure() { return m_SaveFile; }
+	XY_NODISCARD const FSaveFileStructure& GetSaveFileStructure() const { return m_SaveFile; }
+
+	XY_NODISCARD FSimpleData& GetSimpleData() { return m_SaveFile.SimpleData; }
+	XY_NODISCARD FTheScriptsData& GetTheScriptsData() { return m_SaveFile.TheScriptsData; }
+
 public:	 
 	bool Read( const std::filesystem::path& rPath );
 
