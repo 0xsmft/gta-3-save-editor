@@ -10,4 +10,5 @@ struct FStreamingData
 	std::vector<int8_t> Data;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

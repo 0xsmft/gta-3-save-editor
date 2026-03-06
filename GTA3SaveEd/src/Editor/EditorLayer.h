@@ -19,6 +19,7 @@ private:
 	void DrawSelectSavePopup();
 	void DrawSimpleVarsEditor();
 	void DrawGaragesEditor();
+	void DrawPlayerInfoEditor();
 
 private:
 	std::filesystem::path m_SaveFileDirectory;

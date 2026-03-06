@@ -43,4 +43,5 @@ struct FTheCarGenerators
 	std::array<FCCarGenerator, 160> CarGenerators;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

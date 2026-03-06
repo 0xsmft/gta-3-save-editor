@@ -71,4 +71,5 @@ struct FPlayerPeds
 	std::vector<FPlayerPed> PlayerPeds;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ostream& rStream );
 };

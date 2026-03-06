@@ -18,4 +18,5 @@ struct FGangs
 	std::array<FCGangInfo, 9> Gangs;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

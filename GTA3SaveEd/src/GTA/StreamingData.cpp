@@ -19,3 +19,14 @@ bool FStreamingData::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FStreamingData::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 204u, rStream );
+	FBufferHelpers::WriteObject( ( uint32_t ) Data.size(), rStream );
+
+	for( auto& rData : Data )
+	{
+		FBufferHelpers::WriteObject( rData, rStream );
+	}
+}

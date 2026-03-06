@@ -61,3 +61,51 @@ bool FTheCarGenerators::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FTheCarGenerators::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 11552u, rStream );
+	FBufferHelpers::WriteObject( 11548u, rStream );
+
+	FBufferHelpers::WriteBlockHeader( rStream, "CGN", 11540u );
+
+	FBufferHelpers::WriteObject( CarGenDataSize, rStream );
+
+	FBufferHelpers::WriteObject( NumberOfActiveCarGens, rStream );
+	FBufferHelpers::WriteObject( CurrentActiveCount, rStream );
+	FBufferHelpers::WriteObject( ProcessCounter, rStream );
+	FBufferHelpers::WriteObject( GenerateEvenIfPlayerIsCloseCounter, rStream );
+
+	FBufferHelpers::WriteN( rStream, 2 );
+
+	FBufferHelpers::WriteObject( CarGenArraySize, rStream );
+
+	for( uint32_t Index = 0u; Index < CarGenerators.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].ModexIndex, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].Position, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].Angle, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].ColorA, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].ColorB, rStream );
+
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].ForceSpawn, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].Alarm, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].DoorLook, rStream );
+
+		FBufferHelpers::WriteByte( rStream );
+
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].MinDelay, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].MaxDelay, rStream );
+
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].Timer, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].Handle, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].UsesRemaining, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].IsBlocking, rStream );
+
+		FBufferHelpers::WriteByte( rStream );
+
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].VecInf, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].VecSup, rStream );
+		FBufferHelpers::WriteObject( CarGenerators[ Index ].Size, rStream );
+	}
+}

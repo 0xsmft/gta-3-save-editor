@@ -25,3 +25,23 @@ bool FAudioScriptObjects::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FAudioScriptObjects::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 400u, rStream );
+	FBufferHelpers::WriteObject( 396u, rStream );
+
+	FBufferHelpers::WriteBlockHeader( rStream, "AUD", 388u );
+
+	FBufferHelpers::WriteObject( NumAudioObjects, rStream );
+
+	for( auto& rObject : Objects )
+	{
+		FBufferHelpers::WriteObject( rObject.PoolIndex, rStream );
+		FBufferHelpers::WriteObject( rObject.AudioID, rStream );
+		FBufferHelpers::WriteN( rStream, 2 );
+
+		FBufferHelpers::WriteObject( rObject.Position, rStream );
+		FBufferHelpers::WriteObject( rObject.AudioEntity, rStream );
+	}
+}

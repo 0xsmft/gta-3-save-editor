@@ -10,4 +10,5 @@ struct FPathFinding
 	std::vector<uint8_t> DisabledCarPathNodes;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

@@ -29,4 +29,5 @@ struct FRestartInfo
 	uint8_t OverridePoliceLevel = 0;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

@@ -72,4 +72,5 @@ struct FCranes
 	std::array<FCrane, 8> Cranes;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

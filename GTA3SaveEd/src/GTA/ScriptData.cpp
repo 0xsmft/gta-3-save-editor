@@ -126,3 +126,107 @@ bool FTheScriptsData::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FTheScriptsData::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 26264u, rStream );
+	FBufferHelpers::WriteBlockHeader( rStream, "SCR", 26256u );
+
+	FBufferHelpers::WriteObject( VariableSpaceSize, rStream );
+
+	for( uint32_t Index = 0; Index < VariableSpaceSize / 4; ++Index )
+	{
+		FBufferHelpers::WriteObject( ScriptSpace[ Index ], rStream );
+	}
+
+	FBufferHelpers::WriteObject( SCRIPT_DATA_SIZE, rStream );
+
+	FBufferHelpers::WriteObject( MainScriptData.OnMission, rStream );
+
+	for( uint32_t Index = 0; Index < MainScriptData.ContactInfo.size(); ++Index )
+	{
+		FContactInfo& rInfo = MainScriptData.ContactInfo[ Index ];
+
+		FBufferHelpers::WriteObject( rInfo.MissionFlag, rStream );
+		FBufferHelpers::WriteObject( rInfo.BaseBrief, rStream );
+	}
+
+	for( uint32_t Index = 0; Index < MainScriptData.Collectives.size(); ++Index )
+	{
+		FCollective& rCollective = MainScriptData.Collectives[ Index ];
+
+		FBufferHelpers::WriteObject( rCollective.ColIndex, rStream );
+		FBufferHelpers::WriteObject( rCollective.PedIndex, rStream );
+	}
+
+	FBufferHelpers::WriteObject( MainScriptData.NextFreeCollectiveIndex, rStream );
+
+	for( uint32_t Index = 0; Index < MainScriptData.BuildingSwap.size(); ++Index )
+	{
+		FBuildingSwap& rBuildingSwap = MainScriptData.BuildingSwap[ Index ];
+
+		int type = 0;
+		FBufferHelpers::WriteObject( type, rStream );
+		FBufferHelpers::WriteObject( rBuildingSwap.BuildingHandle, rStream );
+		FBufferHelpers::WriteObject( rBuildingSwap.NewModel, rStream );
+		FBufferHelpers::WriteObject( rBuildingSwap.OldModel, rStream );
+
+		rBuildingSwap.Type = ( PoolType ) type;
+	}
+
+	for( uint32_t Index = 0; Index < MainScriptData.InvisibilitySetting.size(); ++Index )
+	{
+		FInvisibilitySetting& rInvisSetting = MainScriptData.InvisibilitySetting[ Index ];
+
+		FBufferHelpers::WriteObject( rInvisSetting.Type, rStream );
+		FBufferHelpers::WriteObject( rInvisSetting.Handle, rStream );
+	}
+
+	FBufferHelpers::WriteObject( MainScriptData.UsingMultiScriptFile, rStream );
+
+	FBufferHelpers::WriteN( rStream, 3 );
+
+	FBufferHelpers::WriteObject( MainScriptData.SizeOfMainSectionInMainScr, rStream );
+	FBufferHelpers::WriteObject( MainScriptData.SizeOfLargestMission, rStream );
+	FBufferHelpers::WriteObject( MainScriptData.NumberOfExclusiveMissionScr, rStream );
+
+	FBufferHelpers::WriteN( rStream, 2 );
+
+	FBufferHelpers::WriteObject( ( uint32_t ) RunningScripts.size(), rStream );
+
+	for( auto& rRunningScript : RunningScripts )
+	{
+		FBufferHelpers::WriteObject( rRunningScript.Next, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.Last, rStream );
+
+		rStream.write( reinterpret_cast< char* >( &rRunningScript.Name ), 8 );
+
+		FBufferHelpers::WriteObject( rRunningScript.CurrentIP, rStream );
+
+		rStream.write( reinterpret_cast< char* >( &rRunningScript.ReturnStack ), sizeof( uint32_t ) * 6 );
+
+		FBufferHelpers::WriteObject( rRunningScript.StackCounter, rStream );
+
+		FBufferHelpers::WriteN( rStream, 2 );
+
+		rStream.write( reinterpret_cast< char* >( &rRunningScript.LocalVariables ), sizeof( uint32_t ) * 16 );
+		FBufferHelpers::WriteObject( rRunningScript.TimerA, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.TimerB, rStream );
+
+		FBufferHelpers::WriteObject( rRunningScript.IfResult, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.IsMissionScript, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.IsActive, rStream );
+
+		FBufferHelpers::WriteByte( rStream );
+
+		FBufferHelpers::WriteObject( rRunningScript.WakeTime, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.IfNumber, rStream );
+
+		FBufferHelpers::WriteObject( rRunningScript.NotFlag, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.WastedBustedEnabled, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.WastedBustedResult, rStream );
+		FBufferHelpers::WriteObject( rRunningScript.MissionFlag, rStream );
+
+		FBufferHelpers::WriteN( rStream, 2 );
+	}
+}

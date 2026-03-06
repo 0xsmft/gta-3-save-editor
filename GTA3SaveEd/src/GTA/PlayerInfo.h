@@ -23,4 +23,5 @@ struct FPlayerInfo
 	char PlayerName[ 70 ]{ 0 };
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

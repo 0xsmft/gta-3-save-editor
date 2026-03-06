@@ -81,3 +81,81 @@ bool FStatsData::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FStatsData::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 424u, rStream );
+	FBufferHelpers::WriteObject( 420u, rStream );
+
+	FBufferHelpers::WriteObject( PeopleKilledByPlayer, rStream );
+	FBufferHelpers::WriteObject( PeopleKilledByOthers, rStream );
+	FBufferHelpers::WriteObject( CarsExploded, rStream );
+	FBufferHelpers::WriteObject( RoundsFiredByPlayer, rStream );
+
+	for( uint32_t Index = 0u; Index < PedsKilledOfThisType.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( PedsKilledOfThisType[ Index ], rStream );
+	}
+
+	FBufferHelpers::WriteObject( HelisDestroyed, rStream );
+	FBufferHelpers::WriteObject( ProgressMade, rStream );
+	FBufferHelpers::WriteObject( TotalProgressInGame, rStream );
+	FBufferHelpers::WriteObject( KgsOfExplosivesUsed, rStream );
+	FBufferHelpers::WriteObject( InstantHitsFiredByPlayer, rStream );
+	FBufferHelpers::WriteObject( InstantHitsHitByPlayer, rStream );
+	FBufferHelpers::WriteObject( CarsCrushed, rStream );
+	FBufferHelpers::WriteObject( HeadsPopped, rStream );
+	FBufferHelpers::WriteObject( TimesArrested, rStream );
+	FBufferHelpers::WriteObject( TimesWasted, rStream );
+	FBufferHelpers::WriteObject( DaysPassed, rStream );
+	FBufferHelpers::WriteObject( TimeSpentRaining, rStream );
+
+	FBufferHelpers::WriteObject( MaxJumpDistance, rStream );
+	FBufferHelpers::WriteObject( MaxJumpHeight, rStream );
+
+	FBufferHelpers::WriteObject( MaxJumpFlips, rStream );
+	FBufferHelpers::WriteObject( MaxJumpSpins, rStream );
+	FBufferHelpers::WriteObject( BestStuntJump, rStream );
+	FBufferHelpers::WriteObject( NumberOfUniqueJumpsFound, rStream );
+	FBufferHelpers::WriteObject( TotalNumberOfUniqueJumps, rStream );
+	FBufferHelpers::WriteObject( MissionsGiven, rStream );
+	FBufferHelpers::WriteObject( MissionsPassed, rStream );
+	FBufferHelpers::WriteObject( PassengersDroppedOffWithTaxi, rStream );
+	FBufferHelpers::WriteObject( MoneyMadeFromTaxi, rStream );
+
+	FBufferHelpers::WriteObject( IndustrialPassed, rStream );
+	FBufferHelpers::WriteObject( CommericalPassed, rStream );
+	FBufferHelpers::WriteObject( SuburbanPassed, rStream );
+
+	FBufferHelpers::WriteObject( ElBurroTime, rStream );
+	FBufferHelpers::WriteObject( DistanceTravelledOnFoot, rStream );
+	FBufferHelpers::WriteObject( DistanceTravelledInVeh, rStream );
+	FBufferHelpers::WriteObject( RecordInPatriotPlayground, rStream );
+	FBufferHelpers::WriteObject( RecordInARideInThePark, rStream );
+	FBufferHelpers::WriteObject( RecordInGripped, rStream );
+	FBufferHelpers::WriteObject( RecordInMayhem, rStream );
+	FBufferHelpers::WriteObject( LivesSaved, rStream );
+	FBufferHelpers::WriteObject( CriminalsCaught, rStream );
+	FBufferHelpers::WriteObject( HighestLevelAmbulanceMission, rStream );
+	FBufferHelpers::WriteObject( FiresExtinguished, rStream );
+	FBufferHelpers::WriteObject( LongestFlight, rStream );
+	FBufferHelpers::WriteObject( TimeTakenDefuseMission, rStream );
+	FBufferHelpers::WriteObject( NumberKillFrenziesPassed, rStream );
+	FBufferHelpers::WriteObject( TotalNumberKillFrenzies, rStream );
+	FBufferHelpers::WriteObject( TotalNumberMissions, rStream );
+
+	for( uint32_t Index = 0u; Index < FastestTimes.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( FastestTimes[ Index ], rStream );
+	}
+
+	for( uint32_t Index = 0u; Index < HighestScores.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( HighestScores[ Index ], rStream );
+	}
+
+	FBufferHelpers::WriteObject( KillsSinceLastCheckpoint, rStream );
+	FBufferHelpers::WriteObject( TotalLegitimateKills, rStream );
+
+	FBufferHelpers::WriteObject( LastMissionPassedName, rStream );
+}

@@ -21,6 +21,24 @@ bool FStoredCar::Read( std::ifstream& rStream )
 	return true;
 }
 
+void FStoredCar::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( ModelID, rStream );
+	FBufferHelpers::WriteObject( Position, rStream );
+	FBufferHelpers::WriteObject( Rotation, rStream );
+	FBufferHelpers::WriteObject( Immunities, rStream );
+	FBufferHelpers::WriteObject( PrimaryColorID, rStream );
+	FBufferHelpers::WriteObject( SecondaryColorID, rStream );
+	FBufferHelpers::WriteObject( RadioStationID, rStream );
+	FBufferHelpers::WriteObject( ModelVariationA, rStream );
+	FBufferHelpers::WriteObject( ModelVariationB, rStream );
+	FBufferHelpers::WriteObject( BombTypeID, rStream );
+
+	FBufferHelpers::WriteN( rStream, 2 );
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 bool FGarages::Read( std::ifstream& rStream )
 {
 	FBufferHelpers::Skip8( rStream );
@@ -110,6 +128,92 @@ bool FGarages::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FGarages::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 5488u, rStream );
+	FBufferHelpers::WriteObject( 5484u, rStream );
+
+	FBufferHelpers::WriteObject( Count, rStream );
+	FBufferHelpers::WriteObject( BombsAreFree, rStream );
+
+	FBufferHelpers::WriteN( rStream, 3 );
+
+	FBufferHelpers::WriteObject( RespraysAreFree, rStream );
+
+	FBufferHelpers::WriteN( rStream, 3 );
+
+	FBufferHelpers::WriteObject( CarsCollected, rStream );
+	FBufferHelpers::WriteObject( BankVansCollected, rStream );
+	FBufferHelpers::WriteObject( PoliceCarsCollected, rStream );
+
+	FBufferHelpers::WriteObject( PortlandIEStatus, rStream );
+	FBufferHelpers::WriteObject( ShoresideIEStatus, rStream );
+	FBufferHelpers::WriteObject( UnusedIEStatus, rStream );
+
+	FBufferHelpers::WriteObject( TimeGA21WasShown, rStream );
+
+	for( uint32_t Index = 0; Index < StoredCars.size(); Index++ )
+	{
+		StoredCars[ Index ].Write( rStream );
+	}
+
+	for( uint32_t Index = 0; Index < 32; Index++ )
+	{
+		FBufferHelpers::WriteObject( Garages[ Index ].TypeID, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].State, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].__unknown_0__, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].ClosingWithoutTargetCar, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Deactivated, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].ResprayHappenend, rStream );
+
+		FBufferHelpers::WriteN( rStream, 2 );
+
+		FBufferHelpers::WriteObject( Garages[ Index ].TargetVehicleModelIdx, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Door1Ptr, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Door2Ptr, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].IsDoor1PoolIndex, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].IsDoor2PoolIndex, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].IsDoor1Object, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].IsDoor2Object, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].__unknown_1__, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].RotatedDoor, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].CameraFollowsPlayer, rStream );
+
+		FBufferHelpers::WriteN( rStream, 1 );
+
+		FBufferHelpers::WriteObject( Garages[ Index ].X1, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].X2, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Y1, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Y2, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Z1, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].Z2, rStream );
+
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorPosition, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorHeight, rStream );
+
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorX1, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorY1, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorX2, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorY2, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorZ1, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].DoorZ2, rStream );
+
+		FBufferHelpers::WriteObject( Garages[ Index ].LastOpenTime, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].CollectedCars, rStream );
+
+		FBufferHelpers::WriteN( rStream, 3 );
+
+		FBufferHelpers::WriteObject( Garages[ Index ].TargetVehiclePtr, rStream );
+		FBufferHelpers::WriteObject( Garages[ Index ].__unknown_2__, rStream );
+
+		Garages[ Index ].StoredCar.Write( rStream );
+	}
+
+	FBufferHelpers::WriteN( rStream, ( uint8_t ) 244 );
+}
+
+//////////////////////////////////////////////////////////////////////////
 
 static std::unordered_map<uint32_t, std::string_view> s_VehicleModelIDToName
 {

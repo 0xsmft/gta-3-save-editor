@@ -31,4 +31,5 @@ struct FPhones
 	std::vector<FCPhone> Phones;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

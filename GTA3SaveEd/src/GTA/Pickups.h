@@ -27,4 +27,5 @@ struct FPickups
 	std::array<uint32_t, 20> PickupsCollected;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

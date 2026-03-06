@@ -26,3 +26,24 @@ bool FPhones::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FPhones::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 2612u, rStream );
+	FBufferHelpers::WriteObject( 2608u, rStream );
+	
+	FBufferHelpers::WriteObject( NumPhones, rStream );
+	FBufferHelpers::WriteObject( NumActivePhones, rStream );
+
+	for( auto& rPhone : Phones )
+	{
+		FBufferHelpers::WriteObject( rPhone.Position, rStream );
+		FBufferHelpers::WriteObject( rPhone.Messages, rStream );
+		FBufferHelpers::WriteObject( rPhone.RepeatedMessageStartTime, rStream );
+		FBufferHelpers::WriteObject( rPhone.Handle, rStream );
+		FBufferHelpers::WriteObject( rPhone.PhoneState, rStream );
+		FBufferHelpers::WriteObject( rPhone.VisibleToCam, rStream );
+
+		FBufferHelpers::WriteN( rStream, 3 );
+	}
+}

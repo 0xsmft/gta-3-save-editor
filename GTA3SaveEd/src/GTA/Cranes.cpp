@@ -55,3 +55,55 @@ bool FCranes::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FCranes::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 1036u, rStream );
+	FBufferHelpers::WriteObject( 1032u, rStream );
+
+	FBufferHelpers::WriteObject( NumberOfCranes, rStream );
+	FBufferHelpers::WriteObject( CarsCollectedByMilitaryCare, rStream );
+
+	for( auto& rCrane : Cranes )
+	{
+		FBufferHelpers::WriteObject( rCrane.Index, rStream );
+		FBufferHelpers::WriteObject( rCrane.HookIndex, rStream );
+		FBufferHelpers::WriteObject( rCrane.AudioEntityIndex, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.PickupZoneX1, rStream );
+		FBufferHelpers::WriteObject( rCrane.PickupZoneX2, rStream );
+		FBufferHelpers::WriteObject( rCrane.PickupZoneY1, rStream );
+		FBufferHelpers::WriteObject( rCrane.PickupZoneY2, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.DropOffPoint, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.DropOffHeadingRad, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmPickUpRotRad, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmDropOffRotRad, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmPickUpDistFromCenter, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmDropOffDistFromCenter, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmPickUpHeight, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmDropOffHeight, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmCurrentRotationRad, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmDistanceFromCenter, rStream );
+		FBufferHelpers::WriteObject( rCrane.ArmCurrentHeight, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.InitialPosition, rStream );
+		FBufferHelpers::WriteObject( rCrane.HookCurrentXYZ, rStream );
+		FBufferHelpers::WriteObject( rCrane.HookVelocity, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.VehPickupPtr, rStream );
+		FBufferHelpers::WriteObject( rCrane.CurrentGameTime, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.Activity, rStream );
+		FBufferHelpers::WriteObject( rCrane.Status, rStream );
+
+		FBufferHelpers::WriteObject( rCrane.NumberOfVehiclesCollected, rStream );
+		FBufferHelpers::WriteObject( rCrane.IsCrusherCrane, rStream );
+		FBufferHelpers::WriteObject( rCrane.IsMilitaryCare, rStream );
+		FBufferHelpers::WriteObject( rCrane.__unknown_1__, rStream );
+		FBufferHelpers::WriteObject( rCrane.ModelIsNotDoc_Crane_Cab, rStream );
+
+		FBufferHelpers::WriteByte( rStream );
+	}
+}

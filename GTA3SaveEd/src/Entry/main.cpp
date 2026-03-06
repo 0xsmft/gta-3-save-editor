@@ -12,9 +12,4 @@ int main( int count, char** ppArgs )
     app.Run();
 
     return 0;
-
-    const std::filesystem::path Path( L"C:\\Users\\smft\\Documents\\GTA3 User Files\\GTA3sf1.b" );
-    
-    FSaveFile sf;
-    sf.Read( Path );
 }

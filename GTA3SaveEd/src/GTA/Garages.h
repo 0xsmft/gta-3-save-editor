@@ -35,6 +35,7 @@ struct FStoredCar
 	}
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };
 
 std::string_view VehicleModelIDToString( uint32_t ModelID );
@@ -186,4 +187,5 @@ struct FGarages
 	std::vector<FGarage> Garages;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

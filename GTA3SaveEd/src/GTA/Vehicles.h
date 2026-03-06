@@ -60,4 +60,5 @@ struct FVehicles
 	std::vector<FBoat> Boats;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

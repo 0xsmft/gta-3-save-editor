@@ -30,6 +30,21 @@ void FEditorLayer::OnImGuiRender()
 
 	if( ImGui::BeginMainMenuBar() )
 	{
+		if( ImGui::BeginMenu( "File" ) )
+		{
+			if( ImGui::MenuItem( "Close" ) )
+			{
+				GApplication->Close();
+			}
+
+			if( ImGui::MenuItem( "Save" ) )
+			{
+				m_SaveFile->Write( m_FoundSaveFiles[ m_SelectedSaveFileIndex ] );
+			}
+
+			ImGui::EndMenu();
+		}
+
 		ImGui::EndMainMenuBar();
 	}
 
@@ -39,6 +54,7 @@ void FEditorLayer::OnImGuiRender()
 	{
 		DrawSimpleVarsEditor();
 		DrawGaragesEditor();
+		DrawPlayerInfoEditor();
 	}
 }
 
@@ -240,6 +256,24 @@ void FEditorLayer::DrawGaragesEditor()
 
 			++index;
 		}
+	}
+
+	ImGui::End();
+}
+
+void FEditorLayer::DrawPlayerInfoEditor()
+{
+	if( ImGui::Begin( "Player Information" ) )
+	{
+		auto& rPlayerInfo = m_SaveFile->GetSaveFileStructure().PlayerInfo;
+
+		ImGui::InputInt( "Money", &rPlayerInfo.Money );
+		ImGui::InputScalar( "Hidden Packages Collected", ImGuiDataType_U32, &rPlayerInfo.CollectedHiddenPackages );
+
+		ImGui::Checkbox( "Fast Reload", &rPlayerInfo.FastReload );
+		ImGui::Checkbox( "Infinite Sprint", &rPlayerInfo.InfiniteSprint );
+
+		rPlayerInfo.CollectedHiddenPackages = std::clamp( rPlayerInfo.CollectedHiddenPackages, 0u, 100u );
 	}
 
 	ImGui::End();

@@ -20,4 +20,5 @@ struct FAudioScriptObjects
 	std::vector<FAudioScriptObject> Objects;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

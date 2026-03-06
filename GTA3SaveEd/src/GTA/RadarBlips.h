@@ -28,4 +28,5 @@ struct FRadarBlips
 	std::array<FSRadarTrace, 32> RadarBlips;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

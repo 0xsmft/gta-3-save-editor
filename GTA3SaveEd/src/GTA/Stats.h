@@ -79,4 +79,5 @@ struct FStatsData
 	char LastMissionPassedName[ 8 ] = { 0 };
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

@@ -59,3 +59,17 @@ bool FVehicles::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FVehicles::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 12u, rStream );
+	FBufferHelpers::WriteObject( 8u, rStream );
+	
+	FBufferHelpers::WriteObject( Count, rStream );
+	FBufferHelpers::WriteObject( NumberOfBoats, rStream );
+
+	// TODO;
+	for( uint32_t Index = 0; Index < Count + NumberOfBoats; ++Index )
+	{
+	}
+}

@@ -25,3 +25,20 @@ bool FPathFinding::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FPathFinding::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 1232u, rStream );
+
+	FBufferHelpers::WriteObject( NumberOfPaths * 2, rStream );
+
+	for( uint32_t Index = 0u; Index < DisabledPedPathNodes.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( DisabledPedPathNodes[ Index ], rStream );
+	}
+
+	for( uint32_t Index = 0u; Index < DisabledCarPathNodes.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( DisabledCarPathNodes[ Index ], rStream );
+	}
+}

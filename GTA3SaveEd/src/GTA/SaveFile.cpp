@@ -45,3 +45,33 @@ bool FSaveFile::Read( const std::filesystem::path& rPath )
 
 	return true;
 }
+void FSaveFile::Write( const std::filesystem::path& rPath )
+{
+	std::ofstream fout( rPath, std::ios::binary | std::ios::trunc );
+
+	FBufferHelpers::WriteObject( 26456u, fout );
+	FBufferHelpers::WriteObject( m_SaveFile.SimpleData, fout );
+
+	m_SaveFile.TheScriptsData.Write( fout );
+	m_SaveFile.PlayerPedsData.Write( fout );
+	m_SaveFile.Garages.Write( fout );
+	m_SaveFile.Vehicles.Write( fout );
+	m_SaveFile.Objects.Write( fout );
+	m_SaveFile.PathFinding.Write( fout );
+	m_SaveFile.Cranes.Write( fout );
+	m_SaveFile.Pickups.Write( fout );
+	m_SaveFile.Phones.Write( fout );
+	m_SaveFile.Restarts.Write( fout );
+	m_SaveFile.RadarBlips.Write( fout );
+	m_SaveFile.TheZones.Write( fout );
+	m_SaveFile.Gangs.Write( fout );
+	m_SaveFile.CarGenerators.Write( fout );
+	m_SaveFile.Particles.Write( fout );
+	m_SaveFile.AudioScriptObjects.Write( fout );
+	m_SaveFile.PlayerInfo.Write( fout );
+	m_SaveFile.PlayerStats.Write( fout );
+	m_SaveFile.StreamingData.Write( fout );
+	m_SaveFile.PedTypeInfos.Write( fout );
+
+	fout.close();
+}

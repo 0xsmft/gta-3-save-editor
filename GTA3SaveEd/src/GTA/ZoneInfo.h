@@ -57,4 +57,5 @@ struct FTheZones
 	uint16_t NumberOfAudioZones = 0;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

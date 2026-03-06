@@ -55,4 +55,5 @@ struct FObjects
 	std::vector<FCObject> Objects;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

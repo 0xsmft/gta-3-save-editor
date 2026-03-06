@@ -44,4 +44,5 @@ struct FParticles
 	std::vector<FCParticle> Particles;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

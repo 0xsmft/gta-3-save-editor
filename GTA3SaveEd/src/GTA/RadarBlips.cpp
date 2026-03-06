@@ -29,3 +29,28 @@ bool FRadarBlips::Read( std::ifstream& rStream )
 
 	return true;
 }
+
+void FRadarBlips::Write( std::ofstream& rStream )
+{
+	FBufferHelpers::WriteObject( 1548u, rStream );
+	FBufferHelpers::WriteObject( 1544u, rStream );
+	FBufferHelpers::WriteBlockHeader( rStream, "RDR", 1536 );
+
+	for( uint32_t Index = 0u; Index < RadarBlips.size(); ++Index )
+	{
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Color, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Type, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].EntityHandle, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].RadarPosition, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].WorldPosition, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].BlipIndex, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].IsBright, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Enabled, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Radius, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Scale, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Display, rStream );
+		FBufferHelpers::WriteObject( RadarBlips[ Index ].Sprite, rStream );
+
+		FBufferHelpers::WriteN( rStream, 2 );
+	}
+}

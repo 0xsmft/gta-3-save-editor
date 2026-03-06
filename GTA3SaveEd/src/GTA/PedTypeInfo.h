@@ -25,4 +25,5 @@ struct FPedTypeInfos
 	std::array<FPedTypeInfo, 23> PedTypeInfos;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };

@@ -99,4 +99,5 @@ struct FTheScriptsData
 	std::vector<CRunningScript> RunningScripts;
 
 	bool Read( std::ifstream& rStream );
+	void Write( std::ofstream& rStream );
 };
